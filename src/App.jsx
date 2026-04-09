@@ -1,121 +1,107 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { Routes, Route, NavLink, Link, useLocation } from "react-router-dom";
+import Home from "./Home.jsx";
+import MusicPlayer from "./MusicPlayer.jsx";
+import AboutUs from "./AboutUs.jsx";
+import Library from "./Library.jsx";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const location = useLocation();
+  const isHome = location.pathname === "/";
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
+    <div>
+      {/* Background bar */}
+    <div
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: isHome ? "0" : "100px",
+        background: isHome ? "transparent" : "black",
+        zIndex: 5,
+        transition: "all 0.4s ease",
+      }}
+    />
+      <Link
+        to="/"
+        style={{
+          position: "fixed",
+          top: "1rem",
+          left: "2.5rem",
+          display: "flex",
+          alignItems: "center",
+          gap: "0.5rem",
+          textDecoration: "none",
+          zIndex: 10,
+        }}
+      >
+        <img
+          src="/p90/covers/Mili.PNG"
+          alt="Logo"
+          style={{
+            height: "80px",
+            width: "auto",
+          }}
+        />
+        <span
+          style={{
+            fontSize: "1.2rem",
+            fontWeight: "bold",
+            color: "white",
+          }}
         >
-          Count is {count}
-        </button>
-      </section>
+          Project Mili
+        </span>
+      </Link>
+      <nav
+        style={{
+          position: "fixed",
+          top: "2rem",
+          right: "2.5rem",
+          zIndex: 10,
+          display: "flex",
+          gap: "2rem",
+          padding: "0.5rem 1rem",
+          // background: "rgba(255, 255, 255, 0.1)",
+          // backdropFilter: "blur(8px)",
+          // borderRadius: "12px",
+        }}
+      >
+        {[
+          { name: "Home", path: "/", end: true },
+          { name: "Music Player", path: "/player" },
+          { name: "About Us", path: "/about" },
+          { name: "Library", path: "/library" },
+        ].map((item) => (
+          <NavLink
+            key={item.name}
+            to={item.path}
+            end={item.end}
+            style={({ isActive }) => ({
+              textDecoration: "none",
+              color: isActive ? "#1eb5b5" : "#a8a8a8", // 👈 cyan when active
+              fontSize: "1.0rem",
+              letterSpacing: "0.08em",
+              fontWeight: "400",
+              transition: "opacity 0.25s ease, color 0.25s ease",
+            })}
+            onMouseEnter={(e) => (e.currentTarget.style.filter = "brightness(0.7)")}
+            onMouseLeave={(e) => (e.currentTarget.style.filter = "brightness(1)")}
+          >
+            {item.name}
+          </NavLink>
+        ))}
+      </nav>
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/player" element={<MusicPlayer />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/library" element={<Library />} />
+      </Routes>
+    </div>
+  );
 }
 
-export default App
+export default App;
