@@ -6,6 +6,9 @@ export default defineConfig({
   base: '/p90/',
   plugins: [react()],
   build: {
-    outDir: "docs"
+    outDir: "docs",
+    // rollupOptions: {
+    //   external: ["react-native-fs"]
+    // },
   }
 })

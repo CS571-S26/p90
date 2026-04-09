@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, useMotionValue, animate } from 'framer-motion'
 import { Button } from 'react-bootstrap';
-import jsmediatags from "jsmediatags";
+import jsmediatags from "jsmediatags/dist/jsmediatags.min.js";
 
 const trackPrefix = "/p90/tracks/";
 
@@ -24,7 +24,6 @@ function MusicPlayer() {
 
     const randomTrack = () => {
         const list = [
-            "Classroom Dreamer.flac",
             "Bulbel.mp3",
             "North.mp3",
             "E-01.mp3",
