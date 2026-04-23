@@ -1,7 +1,7 @@
 
 import { motion } from "framer-motion";
 
-export default function RevealText({ text, large }) {
+export default function RevealText({ text, style }) {
   const words = text.split(" ");
 
   const container = {
@@ -33,15 +33,7 @@ export default function RevealText({ text, large }) {
       initial="hidden"
       whileInView="show"
       viewport={{ amount: 0.6, margin: "-20% 0px -20% 0px" }}
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        gap: "0.4em",
-        fontSize: large ? "4rem" : "1.5rem",
-        color: "white",
-        textAlign: "center",
-      }}
+      style={style}
     >
       {words.map((word, i) => (
         <motion.span key={i} variants={child}>

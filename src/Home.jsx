@@ -1,5 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import RevealText from "./RevealText";
+import Mili from "./Mili"
+import Listen from "./Listen";
+import MagnoliaVinyl from "./MagnoliaVinyl";
 
 export default function Home() {
     const containerRef = useRef(null);
@@ -41,11 +44,9 @@ export default function Home() {
     return (
         <div ref={containerRef} style={style.app}>
 
-            <Section
-                id="listen"
-                title="LISTEN NOW"
-                bg="/p90/covers/Mag%20Mell.jpg"
-            />
+            <Mili/>
+            <Listen/>
+            <MagnoliaVinyl/>
 
             <Section
                 id="key"
@@ -92,8 +93,8 @@ function Section({ id, title, bg, video }) {
             <div style={style.overlay} />
 
             <div style={style.content}>
-                {/* <h1 style={style.title}>{title}</h1> */}
-                <RevealText text={title}/>
+                <h1 style={style.title}>{title}</h1>
+                {/* <RevealText text={title} style={style.content}/> */}
             </div>
 
         </section>
@@ -155,5 +156,6 @@ const style = {
         fontSize: "4rem",
         letterSpacing: "4px",
         fontWeight: 300,
+        fontFamily: "arno-pro"
     },
 };

@@ -3,6 +3,7 @@ import Home from "./Home.jsx";
 import MusicPlayer from "./MusicPlayer.jsx";
 import AboutUs from "./AboutUs.jsx";
 import Library from "./Library.jsx";
+import ScrollToTop from "./ScrollToTop";
 
 function App() {
     const location = useLocation();
@@ -95,6 +96,7 @@ function App() {
                 ))}
             </nav>
 
+            <ScrollToTop/>
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/player" element={<MusicPlayer />} />
