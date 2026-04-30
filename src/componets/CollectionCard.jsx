@@ -6,7 +6,7 @@ export default function CollectionCard(props) {
     const isPlayable = (category) => {
         if (!category) return false;
         const lower = category.toLowerCase();
-        return !lower.includes("album") && !lower.includes("soundtrack");
+        return !lower.includes("album") && !lower.includes("original soundtrack");
     };
 
     const cardStyle = {
@@ -93,7 +93,7 @@ export default function CollectionCard(props) {
                                 window.open(props.link, "_blank", "noopener,noreferrer");
                             }}
                         >
-                            Open
+                            Link
                         </button>
                     )}
 

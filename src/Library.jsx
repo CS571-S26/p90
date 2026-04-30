@@ -91,7 +91,7 @@ function Library() {
                             onChange={(e) => setSearch(e.target.value)}
                             style={{
                                 padding: "10px 14px",
-                                width: "60%",
+                                width: "70%",
                                 maxWidth: "400px",
                                 borderRadius: "8px",
                                 border: "1px solid #ccc",
@@ -104,6 +104,7 @@ function Library() {
                             <header style={style.header}>
                                 <h1 style={style.title}>Albums</h1>
                             </header>
+                            <div style={style.dividerStyle} />
                             <div style={style.gridStyle}>
                                 {filteredAlbums.map((album) => (
                                     <CollectionCard key={album.title} {...album} />
