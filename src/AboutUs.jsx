@@ -1,5 +1,5 @@
 import React from "react";
-import MemberCard from "./MemberCard.jsx";
+import MemberCard from "./componets/MemberCard.jsx";
 import { useNavigate } from "react-router-dom";
 
 const members = [
@@ -13,7 +13,7 @@ export default function AboutUs() {
     const navigate = useNavigate();
     const pageStyle = {
         fontFamily: "Arial, sans-serif",
-        paddingTop: "8rem", // 👈 key fix (adjust if needed)
+        paddingTop: "8rem",
     };
 
     const groupImage = {
@@ -67,7 +67,7 @@ export default function AboutUs() {
         width: "75%",
         margin: "0 auto",
         textAlign: "center",
-        fontFamily: "arno-pro",
+        fontFamily: "alice",
     };
 
     const memberListStyle = {

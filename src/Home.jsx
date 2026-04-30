@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from "react";
-import RevealText from "./RevealText";
-import Mili from "./Mili"
-import Listen from "./Listen";
-import MagnoliaVinyl from "./MagnoliaVinyl";
+import Mili from "./componets/Mili"
+import Listen from "./componets/Listen";
+import MagnoliaVinyl from "./componets/MagnoliaVinyl";
 
 export default function Home() {
     const containerRef = useRef(null);

@@ -1,13 +1,23 @@
 import { Routes, Route, NavLink, Link, useLocation } from "react-router-dom";
 import Home from "./Home.jsx";
-import MusicPlayer from "./MusicPlayer.jsx";
+// import MusicPlayer from "./MusicPlayer.jsx";
 import AboutUs from "./AboutUs.jsx";
 import Library from "./Library.jsx";
-import ScrollToTop from "./ScrollToTop";
+import ScrollToTop from "./componets/ScrollToTop.jsx";
+import FloatingMusicPlayer from "./FloatingMusicPlayer";
+import { useEffect } from "react";
 
 function App() {
     const location = useLocation();
     const isHome = location.pathname === "/";
+
+    // load the font Alice
+    useEffect(() => {
+        const link = document.createElement("link");
+        link.href = "https://fonts.googleapis.com/css2?family=Alice&display=swap";
+        link.rel = "stylesheet";
+        document.head.appendChild(link);
+    }, []);
 
     return (
         <div>
@@ -71,7 +81,7 @@ function App() {
             >
                 {[
                     { name: "Home", path: "/", end: true },
-                    { name: "Music Player", path: "/player" },
+                    // { name: "Music Player", path: "/player" },
                     { name: "About Us", path: "/about" },
                     { name: "Library", path: "/library" },
                 ].map((item) => (
@@ -84,7 +94,7 @@ function App() {
                             color: isActive ? "#1eb5b5" : "#a8a8a8", // 👈 cyan when active
                             fontSize: "1.0rem",
                             letterSpacing: "0.08em",
-                            fontFamily: "arno-pro",
+                            fontFamily: "alice",
                             fontWeight: "400",
                             transition: "opacity 0.25s ease, color 0.25s ease",
                         })}
@@ -96,13 +106,14 @@ function App() {
                 ))}
             </nav>
 
-            <ScrollToTop/>
+            <ScrollToTop />
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/player" element={<MusicPlayer />} />
+                {/* <Route path="/player" element={<MusicPlayer />} /> */}
                 <Route path="/about" element={<AboutUs />} />
                 <Route path="/library" element={<Library />} />
             </Routes>
+            <FloatingMusicPlayer />
         </div>
     );
 }
